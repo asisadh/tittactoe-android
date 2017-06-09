@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TicTacToe Android</string>
+
+    <string name="yes"> Yes </string>
 </resources>
