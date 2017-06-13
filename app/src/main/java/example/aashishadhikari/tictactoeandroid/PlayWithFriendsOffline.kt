@@ -1,7 +1,6 @@
 package example.aashishadhikari.tictactoeandroid
 
 import android.app.Activity
-import android.app.PendingIntent.getActivity
 import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -13,37 +12,18 @@ import android.widget.Toast
 
 
 // importing views From xml
-
-import kotlinx.android.synthetic.main.activity_main.v0
-import kotlinx.android.synthetic.main.activity_main.v1
-import kotlinx.android.synthetic.main.activity_main.v2
-import kotlinx.android.synthetic.main.activity_main.v3
-import kotlinx.android.synthetic.main.activity_main.v4
-import kotlinx.android.synthetic.main.activity_main.v5
-import kotlinx.android.synthetic.main.activity_main.v6
-import kotlinx.android.synthetic.main.activity_main.v7
-import kotlinx.android.synthetic.main.activity_main.v8
-
-import kotlinx.android.synthetic.main.activity_main.information
+import kotlinx.android.synthetic.main.activity_play_with_friend_offline.*
 
 import example.aashishadhikari.tictactoeandroid.model.Board
 import example.aashishadhikari.tictactoeandroid.model.PlayerState
-import android.content.DialogInterface
-import android.R.string.ok
-import android.os.Build
 
-
-
-
-
-
-class MainActivity : Activity() {
+class PlayWithFriendsOffline : Activity() {
 
     var board: Board = Board()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_play_with_friend_offline)
 
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN)
@@ -69,7 +49,6 @@ class MainActivity : Activity() {
             R.id.v6 -> updateBoard(v6,2,0)
             R.id.v7 -> updateBoard(v7,2,1)
             R.id.v8 -> updateBoard(v8,2,2)
-
         }
     }
 
@@ -120,7 +99,7 @@ class MainActivity : Activity() {
 
     fun showDialog(message:String){
 
-        val alertDialog = AlertDialog.Builder(this@MainActivity)
+        val alertDialog = AlertDialog.Builder(this@PlayWithFriendsOffline)
 
         alertDialog.setPositiveButton("Yes") { dialog, which -> board.clear(); clearBoard(); updateGame() }
 
@@ -143,5 +122,14 @@ class MainActivity : Activity() {
         v6.setImageDrawable(ActivityCompat.getDrawable(this, R.drawable.blank))
         v7.setImageDrawable(ActivityCompat.getDrawable(this, R.drawable.blank))
         v8.setImageDrawable(ActivityCompat.getDrawable(this, R.drawable.blank))
+    }
+
+    override fun onBackPressed() {
+        val alertDialog = AlertDialog.Builder(this@PlayWithFriendsOffline)
+        alertDialog.setPositiveButton("Yes") { dialog, which -> finish() }
+        alertDialog.setNegativeButton("No") { dialog, which -> null }
+        alertDialog.setMessage("Are you Sure you want to quit the game?")
+        alertDialog.setTitle(resources.getString(R.string.app_name))
+        alertDialog.show()
     }
 }
