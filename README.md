@@ -2,7 +2,7 @@
 Android TicTacToe game 
 
 This is an old classic game of <strong>'Tic Tac Toe'</strong> game. <br /> 
-Its support <i><u>Multiplayer</i></u>. <br /> 
+It support <i><u>Multiplayer</i></u>. <br /> 
 The server is build on Node.js using Socket.io <br /> 
 The client side android app also use socket.io to communicate with the sever. <br /> <br /> 
 
